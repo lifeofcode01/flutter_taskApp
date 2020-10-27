@@ -11,16 +11,18 @@ class _AddTodoButtonState extends State<AddTodoButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: FlatButton(
-            onPressed: () {
-              Get.to(AddTodo());
-            },
-            child: Text(
-              "Add Todo",
-              style: TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-              ),
-            )));
+      child: FlatButton(
+        onPressed: () {
+          Get.to(AddTodo());
+        },
+        child: Text(
+          "Add Todo",
+          style: TextStyle(
+            color: Colors.blue,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -6,17 +6,20 @@ import 'package:learn_2gether/pages/todo_app/display_todo/views/todo_template/ta
 import '../../../todo_model.dart';
 
 class TodoTemplate extends StatelessWidget {
-  final TodoModel todoModel;
-  TodoTemplate({this.todoModel});
+  // final TodoModel todoModel;
+  // TodoTemplate({this.todoModel});
 
-  // final todoModel = Get.find<AddTodoCtrl>().getTodoModel;
+  final todoModel = Get.find<AddTodoCtrl>().getTodoModel;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-      children: [buildListTile(), TaskPriority(todoModel: todoModel)],
-    ));
+    return Card(
+      color: Colors.grey,
+      child: Container(
+          child: Column(
+        children: [buildListTile(), TaskPriority()],
+      )),
+    );
   }
 
   ListTile buildListTile() {

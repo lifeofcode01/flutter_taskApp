@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:learn_2gether/pages/todo_app/todo_model.dart';
 
 import 'controller/add_todo_ctrl.dart';
-import 'views/print_task_widget.dart';
 import 'views/task_detail_textfield.dart';
 import 'views/task_title_textfield.dart';
 import 'views/task_list.dart';

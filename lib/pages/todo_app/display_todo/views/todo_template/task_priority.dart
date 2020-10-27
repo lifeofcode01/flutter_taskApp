@@ -6,10 +6,10 @@ import 'package:learn_2gether/pages/todo_app/display_todo/controller/display_tod
 import '../../../todo_model.dart';
 
 class TaskPriority extends StatelessWidget {
-  TodoModel todoModel;
-  TaskPriority({this.todoModel});
-  final displayTodoCtrl = Get.find<DisplayTodoCtrl>();
-  // final AddTodoCtrl addTodoCtrl = Get.find<AddTodoCtrl>();
+  // TodoModel todoModel;
+  // TaskPriority({this.todoModel});
+  // final displayTodoCtrl = Get.find<DisplayTodoCtrl>();
+  final addTodoCtrl = Get.find<AddTodoCtrl>();
 
   // TodoModel todoModel = displayTodoCtrl.todoModel;
   @override
@@ -17,11 +17,12 @@ class TaskPriority extends StatelessWidget {
     return Container(
         child: Column(
       children: [
-        DisplayPriorityText(todoModel: todoModel),
+        DisplayPriorityText(),
         RaisedButton(
             child: Text('increase priority'),
             onPressed: () {
-              displayTodoCtrl?.increasePriority(todoModel);
+              addTodoCtrl?.increasePriority(
+                  addTodoCtrl?.todoList[addTodoCtrl.taskIndex]);
             })
       ],
     ));
@@ -29,18 +30,17 @@ class TaskPriority extends StatelessWidget {
 }
 
 class DisplayPriorityText extends StatelessWidget {
-  DisplayPriorityText({
-    Key key,
-    @required this.todoModel,
-  }) : super(key: key);
+  // DisplayPriorityText({
+  //   Key key,
+  //   @required this.todoModel,
+  // }) : super(key: key);
 
-  final TodoModel todoModel;
-  // final TodoModel todoModel2 = Get.find<AddTodoCtrl>().getTodoModel;
-
+  // final TodoModel todoModel;
+  final todoModel2 = Get.find<AddTodoCtrl>().getTodoModel;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DisplayTodoCtrl>(
-      builder: (_) => Text(todoModel.taskPriority.toString() ?? '0 priority'),
+    return GetBuilder<AddTodoCtrl>(
+      builder: (_) => Text(todoModel2.taskPriority.toString() ?? '0 priority'),
     );
   }
 }

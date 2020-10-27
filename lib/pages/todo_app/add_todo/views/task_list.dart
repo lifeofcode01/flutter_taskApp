@@ -28,9 +28,13 @@ class _TaskListState extends State<TaskList> {
                 shrinkWrap: true,
                 itemCount: addTodoCtrl?.todoList?.length,
                 itemBuilder: (context, index) {
-                  // addTodoCtrl.setTodoModel = addTodoCtrl?.todoList[index];
-                  TodoModel todo = addTodoCtrl?.todoList[index];
-                  return TodoTemplate(todoModel: todo);
+                  TodoModel todoModel =
+                      addTodoCtrl.setTodoModel = addTodoCtrl?.todoList[index];
+
+                  // TodoModel todo = addTodoCtrl?.todoList[index];
+                  return TodoTemplate(
+                      // todo: todo
+                      );
 
                   // buildListTile(index);
                 },

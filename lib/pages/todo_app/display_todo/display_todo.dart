@@ -19,31 +19,8 @@ class _DisplayTodoState extends State<DisplayTodo> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        children: [
-          AddTodoButton(),
-          // TodoList(),
-          TaskList()
-
-          // ListView.builder(
-          //   shrinkWrap: true,
-          //   itemCount: 5,
-          //   // addTodoCtrl?.todoList?.length,
-          //   itemBuilder: (context, index) {
-          //     // TodoModel todo = addTodoCtrl?.todoList[index];
-          //     return Text('dfd');
-          //     //  buildListTile(todo);
-          //   },
-          // )
-        ],
+        children: [AddTodoButton(), TaskList()],
       ),
-    );
-  }
-
-  ListTile buildListTile(TodoModel todo) {
-    print('todo: ${todo.taskName}');
-    return ListTile(
-      title: Text(todo?.taskName ?? 'no data in list'),
-      subtitle: Text('task detail' ?? 'no'),
     );
   }
 }

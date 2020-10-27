@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:learn_2gether/pages/todo_app/todo_model.dart';
 
 class AddTodoCtrl extends GetxController {
+  int taskIndex;
   TodoModel _todoModel = TodoModel();
   List<TodoModel> todoList = [];
   // List<TodoModel> get getTodoList = _todoList;
@@ -20,7 +21,7 @@ class AddTodoCtrl extends GetxController {
     });
   }
 
-  increasePriority() {
+  increasePriority(TodoModel todoModel) {
     print('inside increasePriority');
     if (_todoModel.taskPriority == null) {
       print('task priority : null');

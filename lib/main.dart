@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_2gether/ctrl_binding/ctrl_binding.dart';
+import 'package:learn_2gether/pages/task_app/display_task/display_task.dart';
 import 'package:learn_2gether/pages/todo_app/display_todo/display_todo.dart';
 
 void main() {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: DisplayTodo(),
+      home: DisplayTask(),
     );
   }
 }
