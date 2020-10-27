@@ -5,8 +5,8 @@ class TaskTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ListTile(
-        title: Text('Task 1'),
-        subtitle: Text('Detail 1'),
+        title: Text('task 1'),
+        subtitle: Text('task Deatail '),
       ),
     );
   }
