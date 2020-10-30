@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_2gether/ctrl_binding/ctrl_binding.dart';
 import 'package:learn_2gether/pages/task_app/display_task/display_task.dart';
 
 void main() {
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialBinding: CtrlBinding(),
+      // initialBinding: CtrlBinding(),
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
