@@ -17,6 +17,7 @@ class TaskList extends StatelessWidget {
               ? Center(child: Text('No Task'))
               : Container(
                   child: ListView.builder(
+                  // physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: displayTaskCtrl.displayTaskList.length,
                   itemBuilder: (context, index) {

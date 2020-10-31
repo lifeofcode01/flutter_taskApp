@@ -18,14 +18,14 @@ class _DisplayTaskState extends State<DisplayTask> {
   Logger logger = Logger();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: ListView(
-      children: [
-        AddTaskButton(),
-        TaskList(),
-      ],
-    ));
+    return SafeArea(
+      child: Scaffold(
+          body: Column(
+        children: [
+          AddTaskButton(),
+          Flexible(child: TaskList()),
+        ],
+      )),
+    );
   }
-
-  
 }

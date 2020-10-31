@@ -54,10 +54,14 @@ class AddTaskCtrl extends GetxController {
       });
 
       isUploading = false;
+      Get.snackbar(
+        'Task posted!',
+        '',
+        snackPosition: SnackPosition.BOTTOM,
+      );
       update();
       print('isUploading: $isUploading');
       resetUi();
-      
     });
   }
 
