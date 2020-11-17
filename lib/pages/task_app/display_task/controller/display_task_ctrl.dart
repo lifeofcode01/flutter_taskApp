@@ -28,7 +28,7 @@ class DisplayTaskCtrl extends GetxController {
 
   Future gettingTaskFromDb() async {
     logger.d('inside gettingTaskFromDb()');
-    var url = "http://www.json-generator.com/api/json/get/cgCyOsHjiq?indent=2";
+    var url = "https://tranquil-escarpment-92025.herokuapp.com/userTask/getUserTask";
 
     var response = await http.get(url);
     if (response.statusCode == 200) {
