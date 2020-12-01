@@ -36,7 +36,8 @@ class AddTask extends StatelessWidget {
             onPressed: () {
               // addTaskCtrl.addTaskInList();
 
-              addTaskCtrl.postTaskToDb();
+              addTaskCtrl.postTaskToMongoDB();
+              // addTaskCtrl.postTaskToDb();
               displayTaskCtrl.getTaskFromDb();
             },
             child: Text(

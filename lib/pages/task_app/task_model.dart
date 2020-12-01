@@ -4,26 +4,26 @@
 
 import 'dart:convert';
 
-TaskModel taskModelFromJson(String str) => TaskModel.fromJson(json.decode(str));
-
-String taskModelToJson(TaskModel data) => json.encode(data.toJson());
-
 class TaskModel {
-  TaskModel({
-    this.taskName,
-    this.taskDetail,
-  });
+    TaskModel({
+        this.taskTitle,
+        this.taskDescription,
+    });
 
-  String taskName;
-  String taskDetail;
+    String taskTitle;
+    String taskDescription;
 
-  factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
-        taskName: json["taskTitle"],
-        taskDetail: json["taskDescription"],
-      );
+    factory TaskModel.fromRawJson(String str) => TaskModel.fromJson(json.decode(str));
 
-  Map<String, dynamic> toJson() => {
-        "taskName": taskName,
-        "taskDetail": taskDetail,
-      };
+    String toRawJson() => json.encode(toJson());
+
+    factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
+        taskTitle: json["taskTitle"],
+        taskDescription: json["taskDescription"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "taskTitle": taskTitle,
+        "taskDescription": taskDescription,
+    };
 }

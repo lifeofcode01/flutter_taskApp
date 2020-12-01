@@ -1,14 +1,21 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_2gether/pages/task_app/task_model.dart';
+import 'package:logger/logger.dart';
 
 class AddTaskCtrl extends GetxController {
   TextEditingController taskNameCtrl = TextEditingController();
+  TextEditingController descriptionCtrl = TextEditingController();
   List<TaskModel> taskList = List();
+  Dio dio = new Dio();
+  String baseUrl = "https://tranquil-escarpment-92025.herokuapp.com";
+  final logger = Logger();
+  TaskModel taskModel = TaskModel();
 
   // void postDataToDb() {
   // TaskModel taskModel = TaskModel(
-  //   taskName: taskNameCtrl.text,
+  //   taskTitle: taskNameCtrl.text,
   //   // taskDetail: taskDetailCtrl
   // );
 
@@ -17,14 +24,14 @@ class AddTaskCtrl extends GetxController {
 
   void addTaskInList() {
     TaskModel taskModel = TaskModel(
-      // taskName: addTaskCtrl?.taskNameCtrl?.text,
-      taskName: taskNameCtrl?.text,
+      // taskTitle: addTaskCtrl?.taskNameCtrl?.text,
+      taskTitle: taskNameCtrl?.text,
     );
     // print('taskname: ${addTaskCtrl?.taskNameCtrl?.text} ');
 
     taskList.add(taskModel);
     taskList.forEach((task) {
-      print('${task.taskName}');
+      print('${task.taskTitle}');
     });
 
     update();
@@ -44,13 +51,13 @@ class AddTaskCtrl extends GetxController {
   void postingTaskToDb() {
     print('inside postingTaskToDb');
     TaskModel taskModel = TaskModel(
-      // taskName: addTaskCtrl?.taskNameCtrl?.text,
-      taskName: taskNameCtrl?.text,
+      // taskTitle: addTaskCtrl?.taskNameCtrl?.text,
+      taskTitle: taskNameCtrl?.text,
     );
     Future.delayed(Duration(seconds: 2)).then((_) {
       taskList.add(taskModel);
       taskList.forEach((task) {
-        print('${task.taskName}');
+        print('${task.taskTitle}');
       });
 
       isUploading = false;
@@ -67,5 +74,24 @@ class AddTaskCtrl extends GetxController {
 
   resetUi() {
     taskNameCtrl.text = '';
+  }
+
+  postTaskToMongoDB() async {
+    String apiUrl = "$baseUrl/userTask/createUserTask";
+    logger.d("apiUrl is: $apiUrl");
+    taskModel.taskTitle = taskNameCtrl.text;
+    taskModel.taskDescription = descriptionCtrl.text;
+    try {
+      Response response = await dio.post(
+        apiUrl,
+        data: taskModel.toJson(),
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        logger.d("response is : ${response.data.toString()}");
+        return response;
+      }
+    } catch (e) {
+      logger.e("catch error : $e");
+    }
   }
 }
