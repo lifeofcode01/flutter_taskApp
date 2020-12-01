@@ -12,6 +12,8 @@ class AddTaskCtrl extends GetxController {
   String baseUrl = "https://tranquil-escarpment-92025.herokuapp.com";
   final logger = Logger();
   TaskModel taskModel = TaskModel();
+  final isTaskUploading = false.obs;
+  // RxBool uploading=false.obs;
 
   // void postDataToDb() {
   // TaskModel taskModel = TaskModel(
@@ -61,22 +63,29 @@ class AddTaskCtrl extends GetxController {
       });
 
       isUploading = false;
-      Get.snackbar(
-        'Task posted!',
-        '',
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      showSnackBar();
       update();
       print('isUploading: $isUploading');
       resetUi();
     });
   }
 
+  void showSnackBar() {
+    Get.snackbar(
+      'Task posted!',
+      '',
+      snackPosition: SnackPosition.BOTTOM,
+    );
+  }
+
   resetUi() {
     taskNameCtrl.text = '';
+    descriptionCtrl.text = '';
   }
 
   postTaskToMongoDB() async {
+    isTaskUploading(true);
+    // isTaskUploading.value=true;
     String apiUrl = "$baseUrl/userTask/createUserTask";
     logger.d("apiUrl is: $apiUrl");
     taskModel.taskTitle = taskNameCtrl.text;
@@ -88,10 +97,14 @@ class AddTaskCtrl extends GetxController {
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         logger.d("response is : ${response.data.toString()}");
+        resetUi();
+        showSnackBar();
         return response;
       }
     } catch (e) {
-      logger.e("catch error : $e");
+      logger.e("catch error : ${e.message}");
+    } finally {
+      isTaskUploading(false);
     }
   }
 }

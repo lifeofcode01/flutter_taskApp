@@ -14,18 +14,32 @@ class AddTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildAddTaskAppBar(),
-        body: GetBuilder<AddTaskCtrl>(
-            builder: (_) => addTaskCtrl.isUploading
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : ListView(
-                    children: [
-                      TaskNameTextField(),
-                      TaskDetailTextField(),
-                    ],
-                  )));
+      appBar: buildAddTaskAppBar(),
+      body: Obx(
+        () => addTaskCtrl.isTaskUploading.value
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView(
+                children: [
+                  TaskNameTextField(),
+                  TaskDetailTextField(),
+                ],
+              ),
+      ),
+    );
+    // body: GetBuilder<AddTaskCtrl>(
+    //   builder: (_) => addTaskCtrl.isUploading
+    //       ? Center(
+    //           child: CircularProgressIndicator(),
+    //         )
+    //       : ListView(
+    //           children: [
+    //             TaskNameTextField(),
+    //             TaskDetailTextField(),
+    //           ],
+    //         ),
+    // ),
   }
 
   AppBar buildAddTaskAppBar() {
